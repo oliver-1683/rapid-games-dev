@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     public float maxSpeed, acceleration;
     private float maxSpeedSqr;
     private bool canMove;
+    public int sprint;
+
 
     // scoring
     private int score;
@@ -109,6 +111,11 @@ public class PlayerController : MonoBehaviour
             {
                 Vector3 planarDir = getPlanarVelocityDirection().normalized;
                 rb.velocity = new Vector3(planarDir.x * maxSpeed, rb.velocity.y, planarDir.z * maxSpeed);
+            }
+
+            if (Input.GetKey("space"))
+            {
+                rb.AddForce(direction * acceleration, ForceMode.Force + sprint);
             }
         }
     }
